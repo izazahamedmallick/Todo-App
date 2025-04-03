@@ -32,7 +32,7 @@ const TaskList: React.FC<ITaskListProps> = ({ tasks, onDelete, onUpdate }) => {
                 {tasks.map((task) => (
                     <li
                         key={task.id}
-                        className="flex justify-between items-center p-4 bg-gray-800 rounded-lg shadow-md border border-gray-700 transition-transform transform"
+                        className="flex justify-between items-center p-2 bg-gray-800 rounded-lg shadow-md border border-gray-700 transition-transform transform"
                     >
                         {editingId === task.id ? (
                             <form
