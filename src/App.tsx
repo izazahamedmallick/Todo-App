@@ -54,11 +54,11 @@ function App() {
         });
     };
     return (
-        <div className="min-h-screen flex items-center flex-col m-4">
-            <div className="w-[350px] md:w-[500px]">
+        <div className="flex items-center flex-col m-4">
+            <div className="w-sm md:w-full lg:w-[600px]">
                 <InputForm handleTaskSubmit={handleTaskSubmit} />
             </div>
-            <div className="w-sm md:w-lg">
+            <div className="w-sm md:w-full lg:w-xl overflow-y-auto">
                 <TaskList
                     tasks={tasks}
                     onDelete={handleDelete}
