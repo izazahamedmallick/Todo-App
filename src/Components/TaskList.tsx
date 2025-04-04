@@ -45,38 +45,38 @@ const TaskList: React.FC<ITaskListProps> = ({ tasks, onDelete, onUpdate }) => {
                                     onChange={(e) =>
                                         setEditText(e.target.value)
                                     }
-                                    className="w-full px-3 py-2 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full px-3 py-1 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     autoFocus
                                 />
                                 <button
                                     type="submit"
-                                    className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition duration-200"
+                                    className="text-sm px-2 md:text-md md:px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-500 transition duration-200"
                                 >
                                     Save
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setEditingId(null)}
-                                    className="px-3 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-500 transition duration-200"
+                                    className="text-sm px-2 md:text-md md:px-3 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-500 transition duration-200"
                                 >
                                     Cancel
                                 </button>
                             </form>
                         ) : (
                             <>
-                                <span className="text-white text-lg">
+                                <span className="text-white text-sm md:text-lg">
                                     {task.task}
                                 </span>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => handleEditClick(task)}
-                                        className="px-3 py-1 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-500 transition duration-200"
+                                        className="text-sm px-2 md:text-md md:px-3 py-1 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-500 transition duration-200"
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => onDelete(task.id)}
-                                        className="px-3 py-1 bg-red-600 cursor-pointer text-white rounded-md hover:bg-red-500 transition duration-200"
+                                        className="text-sm px-2 md:text-md md:px-3 py-1 bg-red-600 cursor-pointer text-white rounded-md hover:bg-red-500 transition duration-200"
                                     >
                                         Delete
                                     </button>

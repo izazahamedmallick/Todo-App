@@ -38,10 +38,10 @@ function App() {
     };
     return (
         <div className="min-h-screen flex items-center flex-col m-4">
-            <div className="w-[500px]">
+            <div className="w-[350px] md:w-[500px]">
                 <InputForm handleTaskSubmit={handleTaskSubmit} />
             </div>
-            <div className="w-lg">
+            <div className="w-sm md:w-lg">
                 <TaskList
                     tasks={tasks}
                     onDelete={handleDelete}
