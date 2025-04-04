@@ -6,6 +6,7 @@ import TaskList from "./Components/TaskList";
 export interface ITaskType {
     id: number;
     task: string;
+    isComplete: boolean;
 }
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         const newTask = {
             id: Date.now(),
             task: task,
+            isComplete: false,
         };
         setTask((prev) => [...prev, newTask]);
     };
@@ -36,6 +38,21 @@ function App() {
             return updatedTasks;
         });
     };
+
+    const handleComplete = (completeTask: ITaskType) => {
+        setTask((prev) => {
+            const taskIndex = tasks.findIndex(
+                (task) => task.id == completeTask.id
+            );
+            if (taskIndex === -1) return prev;
+            const CopyTasks = [...prev];
+            CopyTasks[taskIndex] = {
+                ...CopyTasks[taskIndex],
+                isComplete: !completeTask.isComplete,
+            };
+            return CopyTasks;
+        });
+    };
     return (
         <div className="min-h-screen flex items-center flex-col m-4">
             <div className="w-[350px] md:w-[500px]">
@@ -46,6 +63,7 @@ function App() {
                     tasks={tasks}
                     onDelete={handleDelete}
                     onUpdate={handleUpdate}
+                    onComplete={handleComplete}
                 />
             </div>
         </div>
