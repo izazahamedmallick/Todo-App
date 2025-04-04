@@ -5,15 +5,24 @@ interface ITaskListProps {
     tasks: ITaskType[];
     onDelete: (id: number) => void;
     onUpdate: (id: number, updatedTask: string) => void;
+    onComplete: (task: ITaskType) => void;
 }
 
-const TaskList: React.FC<ITaskListProps> = ({ tasks, onDelete, onUpdate }) => {
+const TaskList: React.FC<ITaskListProps> = ({
+    tasks,
+    onDelete,
+    onUpdate,
+    onComplete,
+}) => {
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editText, setEditText] = useState<string>("");
 
     const handleEditClick = (task: ITaskType) => {
         setEditingId(task.id);
         setEditText(task.task);
+    };
+    const handleComplete = (task: ITaskType) => {
+        onComplete(task);
     };
 
     const handleUpdate = (e: React.FormEvent, id: number) => {
@@ -64,16 +73,32 @@ const TaskList: React.FC<ITaskListProps> = ({ tasks, onDelete, onUpdate }) => {
                             </form>
                         ) : (
                             <>
-                                <span className="text-white text-sm md:text-lg">
+                                <span
+                                    className={` text-sm md:text-lg ${
+                                        task.isComplete
+                                            ? "line-through text-gray-500"
+                                            : "text-white"
+                                    }`}
+                                >
                                     {task.task}
                                 </span>
                                 <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleEditClick(task)}
-                                        className="text-sm px-2 md:text-md md:px-3 py-1 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-500 transition duration-200"
-                                    >
-                                        Edit
-                                    </button>
+                                    <input
+                                        type="checkbox"
+                                        className="w-[20px]"
+                                        onChange={() => handleComplete(task)}
+                                        checked={task.isComplete}
+                                    />
+                                    {!task.isComplete && (
+                                        <button
+                                            onClick={() =>
+                                                handleEditClick(task)
+                                            }
+                                            className="text-sm px-2 md:text-md md:px-3 py-1 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-500 transition duration-200"
+                                        >
+                                            Edit
+                                        </button>
+                                    )}
                                     <button
                                         onClick={() => onDelete(task.id)}
                                         className="text-sm px-2 md:text-md md:px-3 py-1 bg-red-600 cursor-pointer text-white rounded-md hover:bg-red-500 transition duration-200"
